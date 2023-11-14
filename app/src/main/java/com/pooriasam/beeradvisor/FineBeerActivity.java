@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.pooriasam.beeradvisor.BeerExpert;
+
+import java.util.List;
+
 public class FineBeerActivity extends Activity {
+    BeerExpert beerExpert=new BeerExpert();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,17 @@ public class FineBeerActivity extends Activity {
         String beerType=String.valueOf(color.getSelectedItem());
 
         //Display the selected item
-        brands.setText(beerType);
+        //brands.setText("");
+
+
+        List<String> brandsList =beerExpert.getBrands(beerType);
+        StringBuilder brandsFormatted= new StringBuilder();
+        for(String brand: brandsList){
+            brandsFormatted.append(brand).append("\n");
+        }
+
+        brands.setText(brandsFormatted);
+
+
     }
 }
